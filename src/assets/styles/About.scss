@@ -1,0 +1,139 @@
+/* About.scss */
+
+.about-section {
+  width: 100%;
+  /* This is the main “gap” control above/below the card */
+  padding: 60px 0; /* was likely bigger; reduce to tighten spacing */
+  position: relative;
+}
+
+/* Centers the card on the page */
+.about-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+
+  display: flex;
+  justify-content: center;
+}
+
+/* The card MUST sit above any background/wave */
+.about-card {
+  width: 100%;
+  max-width: 980px;
+  padding: 52px 56px;
+  border-radius: 18px;
+
+  position: relative;
+  z-index: 5; /* keeps text above your purple wave */
+
+  /* readable surface */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* default (dark mode feel) */
+  background: rgba(10, 14, 20, 0.70);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* Tighten kicker/title spacing */
+.about-kicker {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  /* match your site’s purple vibe */
+  color: rgba(160, 120, 255, 0.95);
+}
+
+/* Slightly tighter than before so it doesn’t feel “far” */
+.about-title {
+  margin: 0;
+  font-size: 4.1rem;
+  line-height: 1.05;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+/* Better readability */
+.about-body {
+  margin-top: 16px;
+
+  p {
+    margin: 0 0 14px 0;
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 820px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.about-tags {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.about-pill {
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  /* dark-mode pill */
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.80);
+}
+
+/* LIGHT MODE FIXES */
+.light-mode .about-card {
+  background: rgba(255, 255, 255, 0.80);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 18px 60px rgba(2, 6, 23, 0.12);
+}
+
+.light-mode .about-title {
+  color: rgba(15, 23, 42, 0.92);
+}
+
+.light-mode .about-body p {
+  color: rgba(15, 23, 42, 0.70);
+}
+
+.light-mode .about-kicker {
+  color: rgba(80, 0, 202, 0.95); /* your purple */
+}
+
+/* Make tags visible in light mode */
+.light-mode .about-pill {
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  color: rgba(15, 23, 42, 0.78);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 40px 0; /* tighter on mobile */
+  }
+
+  .about-card {
+    padding: 36px 18px;
+    border-radius: 16px;
+  }
+
+  .about-title {
+    font-size: 2.9rem;
+  }
+
+  .about-body p {
+    font-size: 1.05rem;
+  }
+}

@@ -1,48 +1,147 @@
-.contact_wrapper svg {
-  font-size: 1em;
-  vertical-align: middle;
-  margin-right: 5px;
-}
-
-.contact-form {
-  padding-top: 20px;
-
-  button {
-    float: right;
-    background-color: white;
-    color: #050f0b;
-  }
-
-  button:hover {
-    background-color: #5000ca;
-    color: white;
-  }
-
-  fieldset {
-    background-color: white;
-  }
-}
-
-label {
-  font-size: 1.2rem;
-  font-family: 'DomaineDispNar-Medium', sans-serif;
-}
-
-.form-flex {
+#contact {
+  min-height: 100vh;
   display: flex;
-  gap: 15px;
-  padding-bottom: 15px;
+  align-items: center;   /* vertical centering */
 }
 
-.form-flex .MuiFormControl-root {
+.contact-section {
   width: 100%;
+  padding: 20px 0;
+
+  display: flex;
+  justify-content: center; /* horizontal centering */
 }
 
-form {
-  width: 100% !important;
+
+.contact-section {
+  width: 100%;
+  padding: 90px 0;
 }
 
-.body-form {
-  width: 100% !important;
-  margin-bottom: 15px !important;
+.contact-card {
+  width: 100%;
+  max-width: 980px;
+
+  /* matches your overall dark look */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+
+  padding: 56px 56px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+
+.contact-kicker {
+  font-family: "Courier Prime", monospace;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+  font-size: 1.05rem;
+}
+
+.contact-title {
+  margin: 0;
+  font-size: 4.2rem;
+  line-height: 1.05;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.contact-subtitle {
+  margin-top: 18px;
+  max-width: 820px;
+  font-size: 1.35rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.contact-actions {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-family: "Courier Prime", monospace;
+  font-size: 1.2rem;
+
+  padding: 14px 20px;
+  border-radius: 14px;
+
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+
+  background: rgba(80, 0, 202, 0.18);
+  border: 1px solid rgba(80, 0, 202, 0.6);
+
+  transition: transform 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease;
+
+  svg {
+    font-size: 1.25em;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    background: rgba(80, 0, 202, 0.26);
+    box-shadow: 0 14px 40px rgba(80, 0, 202, 0.2);
+  }
+}
+
+.contact-email {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+}
+
+.contact-email-link {
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 2px;
+
+  &:hover {
+    color: #5000ca;
+    border-bottom-color: rgba(80, 0, 202, 0.7);
+  }
+}
+
+.contact-meta {
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-meta-pill {
+  font-family: "Courier Prime", monospace;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 40px 18px;
+    border-radius: 16px;
+  }
+
+  .contact-title {
+    font-size: 3rem;
+  }
+
+  .contact-subtitle {
+    font-size: 1.15rem;
+  }
 }

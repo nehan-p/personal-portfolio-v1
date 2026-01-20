@@ -8,6 +8,13 @@ body {
   font-size: 1.1rem !important;
 }
 
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace !important;
   font-size: 1rem !important;
@@ -17,6 +24,8 @@ code {
   position: relative;
   background-color: #0d1116;
 
+  width: 100%;
+  min-height: 100vh;
 }
 
 a {
@@ -59,11 +68,14 @@ p, a, h1, h2, h3, h4, h5, label, button {
 .container {
   margin-top: 64px;
   width: 100%;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+  align-items: center;        // center the sections horizontally
+  justify-content: flex-start;
 }
+
 
 .header-image {
   width: 100%;

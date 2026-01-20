@@ -1,27 +1,56 @@
 import React from "react";
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import '../assets/styles/Main.scss';
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import "../assets/styles/Main.scss";
 
 function Main() {
-
   return (
     <div className="container">
-      <div className="about-section">
-        <div className="image-wrapper">
-          <img src="https://my-aws-assets.s3.us-west-2.amazonaws.com/portfolio-img/avatar_circle.jpeg" alt="Avatar" />
-        </div>
-        <div className="content">
-          <div className="social_icons">
-            <a href="https://github.com/yujisatojr" target="_blank" rel="noreferrer"><GitHubIcon/></a>
-            <a href="https://www.linkedin.com/in/yujisato/" target="_blank" rel="noreferrer"><LinkedInIcon/></a>
+      {/* Full-width background wrapper */}
+      <div className="about-wrapper">
+        {/* Centered content container */}
+        <div className="about-section">
+          <div className="image-wrapper">
+            {/* Avatar can go here later if you want */}
           </div>
-          <h1>Yuji Sato</h1>
-          <p>Full Stack Engineer</p>
 
-          <div className="mobile_social_icons">
-            <a href="https://github.com/yujisatojr" target="_blank" rel="noreferrer"><GitHubIcon/></a>
-            <a href="https://www.linkedin.com/in/yujisato/" target="_blank" rel="noreferrer"><LinkedInIcon/></a>
+          <div className="content">
+            <div className="social_icons">
+              <a
+                href="https://github.com/nehan-p"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GitHubIcon />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nehan-punjani/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
+              </a>
+            </div>
+
+            <h1>Nehan Punjani</h1>
+            <p>I do stuff with code.</p>
+
+            <div className="mobile_social_icons">
+              <a
+                href="https://github.com/nehan-p"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GitHubIcon />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nehan-punjani/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
+              </a>
+            </div>
           </div>
         </div>
       </div>

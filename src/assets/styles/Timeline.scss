@@ -1,38 +1,70 @@
 .vertical-timeline span {
-    color: white;
-    font-family: 'Courier Prime', monospace;
+  color: white;
+  font-family: "Courier Prime", monospace;
 }
 
 .vertical-timeline p {
-    color: rgb(39, 40, 34);
+  color: rgb(39, 40, 34);
 }
 
 .vertical-timeline-element p {
-    color: rgb(39, 40, 34);
+  color: rgb(39, 40, 34);
 }
 
 .vertical-timeline-element h3 {
-    color: rgb(39, 40, 34);
+  color: rgb(39, 40, 34);
 }
 
 .vertical-timeline-element h4 {
-    color: rgb(39, 40, 34);
+  color: rgb(39, 40, 34);
 }
 
 .vertical-timeline-element span {
-    color: rgb(39, 40, 34);
+  color: rgb(39, 40, 34);
 }
 
 .vertical-timeline-element .vertical-timeline-element-date {
-    color: white;
+  color: white;
+  font-weight: 600;
 }
 
 .svg-inline--fa {
-    color: white;
+  color: white;
 }
 
 @media screen and (max-width: 1170px) {
-    .vertical-timeline-element .vertical-timeline-element-date {
-        color: rgb(39, 40, 34);
-    }
+  .vertical-timeline-element .vertical-timeline-element-date {
+    color: rgb(39, 40, 34);
+  }
+}
+
+/* --- New: make the cards more glanceable (tags + compact bullets) --- */
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 14px 0;
+}
+
+.timeline-tags .tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: rgb(39, 40, 34);
+  background: rgba(80, 0, 202, 0.08);
+  border: 1px solid rgba(80, 0, 202, 0.18);
+}
+
+.timeline-bullets {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.timeline-bullets.compact li {
+  margin: 6px 0;
+  font-size: 0.98rem;
+  line-height: 1.45;
 }
