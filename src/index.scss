@@ -1,3 +1,24 @@
+/* src/index.scss */
+
+:root {
+  --nav-h: 44px;
+  --nav-offset: 86px; /* 44 + 14 top + ~28 breathing room */
+}
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-offset);
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -6,162 +27,114 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.1rem !important;
+
+  /* default: dark */
+  background-color: #0d1116;
 }
 
-html, body, #root {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+/* When App sets these on BODY */
+body.light-mode {
+  background-color: #f8f9fa;
+}
+body.dark-mode {
+  background-color: #0d1116;
 }
 
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace !important;
-  font-size: 1rem !important;
-}
-
+/* Main app wrapper */
 .main-container {
   position: relative;
-  background-color: #0d1116;
-
   width: 100%;
   min-height: 100vh;
+
+  /* default: dark */
+  background-color: #0d1116;
+}
+
+/* Switch main background when body or wrapper is light-mode */
+body.light-mode .main-container,
+.main-container.light-mode {
+  background-color: #f8f9fa;
+}
+
+/* Keep dark explicit too */
+body.dark-mode .main-container,
+.main-container.dark-mode {
+  background-color: #0d1116;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace !important;
+  font-size: 1rem !important;
 }
 
 a {
   text-decoration: none;
 }
-
 a:hover {
   color: #5000ca;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
 }
 
-p, a, h1, h2, h3, h4, h5, label, button {
+/* Default text (dark) */
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+button {
   color: white;
   font-family: "Lato", sans-serif;
 }
 
-.navigation-bar {
-  justify-content: space-between;
-  background-color: #0d1116;
-
-  button {
-    font-size: 1.1rem;
-    font-family: "Lato", sans-serif;
-    text-transform: initial;
-    padding: 6px 10px;
-  }
-
-  svg {
-    cursor: pointer;
-  }
+/* Light mode text (works whether class is on body or wrapper) */
+body.light-mode p,
+body.light-mode a,
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode label,
+body.light-mode button,
+.main-container.light-mode p,
+.main-container.light-mode a,
+.main-container.light-mode h1,
+.main-container.light-mode h2,
+.main-container.light-mode h3,
+.main-container.light-mode h4,
+.main-container.light-mode h5,
+.main-container.light-mode label,
+.main-container.light-mode button {
+  color: #0d1116;
 }
 
-.navigation-bar-responsive {
-  span, p {
-    color: #0d1116;
-    font-family: "Lato", sans-serif;
-  }
-}
-
+/* IMPORTANT: do NOT globally push everything down by nav height */
 .container {
-  margin-top: 64px;
+  margin-top: 0;
   width: 100%;
-
   display: flex;
   flex-direction: column;
-
-  align-items: center;        // center the sections horizontally
+  align-items: center;
   justify-content: flex-start;
 }
 
-
-.header-image {
-  width: 100%;
-  height: 450px;
-
-  img {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-  }
+/* Section scroll offset */
+#home,
+#about,
+#history,
+#projects,
+#contact {
+  scroll-margin-top: var(--nav-offset);
 }
 
-.mobile-menu-top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  font-weight: bold;
-}
-
-.items-container {
-  padding: 5% 10%;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.light-mode {
-  background-color: #f8f9fa;
-
-  .navigation-bar {
-    background-color: #f8f9fa;
-  }
-
-  p, a, h1, h2, h3, h4, h5, label, button {
-    color: #0d1116;
-  }
-
-  a:hover {
-    color: #5000ca;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
-  }
-
-  .navigation-bar svg {
-    color: #0d1116;
-  }
-
-  .about-section {
-    background-image: url("./assets/images/bg-light.png");
-  }
-
-  .skills-container svg {
-    color: #0d1116;
-  }
-
-  .chip {
-    background-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  }
-
-  .vertical-timeline::before {
-    background-color: rgba(0, 0, 0, 0.08);
-  }
-
-  .vertical-timeline--animate .vertical-timeline-element-content.bounce-in {
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  }
-
-  .vertical-timeline--two-columns .vertical-timeline-element-content .vertical-timeline-element-date {
-    color: gray;
-  }
-
-  .vertical-timeline-element-content-arrow {
-    border-right: 7px solid rgba(0, 0, 0, 0.08) !important;
-  }
-
-  .flex-chips .chip-title {
-    color: #0d1116;
-  }
-}
-
-@media screen {
-  @media (max-width: 768px) {
-    .items-container {
-      padding: 5% 5%;
-    }
+/* Responsive */
+@media screen and (max-width: 768px) {
+  :root {
+    --nav-h: 72px;
+    --nav-offset: 92px;
   }
 }

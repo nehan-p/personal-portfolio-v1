@@ -1,70 +1,214 @@
-.vertical-timeline span {
-  color: white;
+/* src/assets/styles/Timeline.scss */
+
+.timeline-section {
+  width: 100%;
+}
+
+.timeline-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 90px 32px 40px;
+}
+
+/* Header block */
+.timeline-header {
+  max-width: 980px;
+  margin: 0 0 28px 0;
+
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.timeline-header.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-kicker {
+  font-family: "Courier Prime", monospace;
+  letter-spacing: 0.12em;
+  font-size: 0.95rem;
+  color: rgba(180, 140, 255, 0.95);
+  margin-bottom: 10px;
+}
+
+.timeline-title {
+  font-size: 3rem;
+  margin: 0 0 10px 0;
+  line-height: 1.1;
+}
+
+.timeline-subtitle {
+  margin: 0;
+  max-width: 860px;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* --- React Vertical Timeline overrides --- */
+.vertical-timeline * {
+  color: inherit;
+}
+
+/* Line */
+.vertical-timeline::before {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+/* Dates */
+.vertical-timeline-element-date {
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-weight: 600;
   font-family: "Courier Prime", monospace;
 }
 
-.vertical-timeline p {
-  color: rgb(39, 40, 34);
+/* Card surface (dark default) */
+.vertical-timeline-element-content {
+  background: rgba(14, 18, 26, 0.86) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35) !important;
 }
 
-.vertical-timeline-element p {
-  color: rgb(39, 40, 34);
+.vertical-timeline-element-content-arrow {
+  border-right-color: rgba(255, 255, 255, 0.10) !important;
 }
 
-.vertical-timeline-element h3 {
-  color: rgb(39, 40, 34);
+/* Icon */
+.vertical-timeline-element-icon {
+  box-shadow: 0 12px 30px rgba(80, 0, 202, 0.35) !important;
 }
 
-.vertical-timeline-element h4 {
-  color: rgb(39, 40, 34);
+/* Reveal */
+.tl-card {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 520ms ease, transform 520ms ease;
 }
 
-.vertical-timeline-element span {
-  color: rgb(39, 40, 34);
+.tl-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.vertical-timeline-element .vertical-timeline-element-date {
-  color: white;
+.tl-role {
+  margin: 0 0 8px 0;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.tl-org {
+  margin: 0 0 16px 0;
   font-weight: 600;
+  font-family: "Courier Prime", monospace;
+  color: rgba(255, 255, 255, 0.70);
 }
 
-.svg-inline--fa {
-  color: white;
-}
-
-@media screen and (max-width: 1170px) {
-  .vertical-timeline-element .vertical-timeline-element-date {
-    color: rgb(39, 40, 34);
-  }
-}
-
-/* --- New: make the cards more glanceable (tags + compact bullets) --- */
-
-.timeline-tags {
+/* Tags */
+.tl-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 14px 0 14px 0;
+  margin: 0 0 16px 0;
 }
 
-.timeline-tags .tag {
+.tl-tag {
   display: inline-block;
-  padding: 6px 10px;
+  padding: 7px 12px;
   border-radius: 999px;
   font-size: 0.92rem;
   font-weight: 600;
-  color: rgb(39, 40, 34);
-  background: rgba(80, 0, 202, 0.08);
-  border: 1px solid rgba(80, 0, 202, 0.18);
+
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(80, 0, 202, 0.14);
+  border: 1px solid rgba(180, 140, 255, 0.18);
 }
 
-.timeline-bullets {
+/* Bullets */
+.tl-bullets {
   margin: 0;
   padding-left: 18px;
 }
 
-.timeline-bullets.compact li {
-  margin: 6px 0;
-  font-size: 0.98rem;
-  line-height: 1.45;
+.tl-bullets li {
+  margin: 8px 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+/* ==========================================
+   LIGHT MODE (works for wrapper OR body)
+   ========================================== */
+body.light-mode,
+.light-mode {
+  .timeline-kicker {
+    color: rgba(80, 0, 202, 0.95);
+  }
+
+  .timeline-subtitle {
+    color: rgba(13, 17, 22, 0.70);
+  }
+
+  .vertical-timeline::before {
+    background: rgba(13, 17, 22, 0.10);
+  }
+
+  .vertical-timeline-element-date {
+    color: rgba(13, 17, 22, 0.55) !important;
+  }
+
+  /* KEY FIX: light card surface */
+  .vertical-timeline-element-content {
+    background: rgba(255, 255, 255, 0.90) !important;
+    border: 1px solid rgba(15, 23, 42, 0.12) !important;
+    box-shadow: 0 18px 60px rgba(2, 6, 23, 0.10) !important;
+  }
+
+  .vertical-timeline-element-content-arrow {
+    border-right-color: rgba(15, 23, 42, 0.12) !important;
+  }
+
+  .tl-org {
+    color: rgba(13, 17, 22, 0.62);
+  }
+
+  .tl-tag {
+    color: rgba(13, 17, 22, 0.78);
+    background: rgba(80, 0, 202, 0.10);
+    border: 1px solid rgba(80, 0, 202, 0.14);
+  }
+
+  /* KEY FIX: bullets were still white-on-white */
+  .tl-bullets li {
+    color: rgba(13, 17, 22, 0.78);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .timeline-inner {
+    padding: 70px 20px 30px;
+  }
+
+  .timeline-title {
+    font-size: 2.4rem;
+  }
+
+  .vertical-timeline-element-date {
+    margin: 8px 0 0 0 !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-header,
+  .tl-card {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
 }

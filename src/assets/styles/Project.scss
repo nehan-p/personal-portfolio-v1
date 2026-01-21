@@ -1,57 +1,128 @@
-/* Project.scss */
-
 .projects-container {
   width: 100%;
-  max-width: 1400px; /* increase from 1200px so it uses more horizontal space */
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 20px 32px;
+  padding: 80px 32px;
 }
 
-.projects-container h1 {
-  margin-bottom: 40px;
+/* Header block */
+.projects-header {
+  margin-bottom: 48px;
 }
 
-/* Grid layout */
-.projects-container .projects-grid {
+/* Purple small title */
+.section-kicker {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(160, 120, 255, 0.95);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* Main title */
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.96);
+  margin: 0;
+}
+
+/* =========================
+   Grid layout (LOCKED 2x2)
+   ========================= */
+.projects-grid {
   display: grid;
 
-  /* Responsive grid: auto adjusts columns based on screen width */
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  /* KEY FIX: Always 2 columns on desktop */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
-  gap: 40px;
-  align-items: start;
+  gap: 48px;
   width: 100%;
+  align-items: start;
 }
 
-/* Individual project card */
-.projects-container .projects-grid .project {
+/* Individual project */
+.project {
   width: 100%;
+  min-width: 0; /* prevents overflow in grid */
   text-align: left;
 }
 
-/* Remove underline on hover for titles */
-.project h2:hover {
-  text-decoration: none;
-}
-
-/* Remove default anchor underline and keep color */
+/* Remove underline & inherit color */
 .project a {
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
-/* Image container */
-.zoom {
-  width: 100%;
-  border-radius: 8px;
-  transition: transform 0.25s ease;
-  display: block;
-  margin: 0; /* remove auto centering so it fills grid cell */
-  overflow: hidden;
+/* Titles */
+.project h2 {
+  margin: 16px 0 8px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
 }
 
-/* Hover zoom effect */
+/* Descriptions */
+.project p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.70);
+  margin: 0;
+}
+
+/* Image */
+.zoom {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: block;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Hover effect */
 .zoom:hover {
   transform: scale(1.05);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.5);
+}
+
+/* Light mode */
+.light-mode .section-title {
+  color: rgba(15, 23, 42, 0.95);
+}
+
+.light-mode .project h2 {
+  color: rgba(15, 23, 42, 0.92);
+}
+
+.light-mode .project p {
+  color: rgba(15, 23, 42, 0.70);
+}
+
+/* Tablet: keep 2 columns but tighter */
+@media (max-width: 1100px) {
+  .projects-container {
+    padding: 70px 24px;
+  }
+
+  .projects-grid {
+    gap: 36px;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 768px) {
+  .projects-container {
+    padding: 60px 20px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
 }

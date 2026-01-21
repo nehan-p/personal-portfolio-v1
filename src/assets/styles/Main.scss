@@ -1,39 +1,57 @@
-
-/* Main.scss */
+/* src/assets/styles/Main.scss */
 
 .container {
   width: 100%;
 }
 
-/* Full-width, full-height hero with the background image */
+/* =========================================================
+   HERO
+   Theme selectors support BOTH:
+   - body.light-mode / body.dark-mode
+   - .light-mode / .dark-mode on a wrapper (main-container)
+   ========================================================= */
+
 .about-wrapper {
   width: 100%;
-  height: 100vh;
-  min-height: 100vh;
+  height: calc(100vh - 64px);
+  min-height: 640px;
   overflow: hidden;
 
+  /* Dark default */
   background-image: url("../images/bg-dark.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
   background-attachment: fixed;
 
   display: flex;
   align-items: center;
+
+  position: relative;
 }
 
-/* Optional: if you had this, keep it */
-.dark-mode .about-wrapper {
-  background-color: rgba(0, 0, 0, 0.2);
+/* Dark overlay (works for body.dark-mode or wrapper .dark-mode) */
+body.dark-mode .about-wrapper::before,
+.dark-mode .about-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.18);
+  pointer-events: none;
 }
 
-/* Center the content container like before */
+/* Light mode background (works for body.light-mode or wrapper .light-mode) */
+body.light-mode .about-wrapper,
+.light-mode .about-wrapper {
+  background-image: url("../images/bg-light.png");
+}
+
+/* Centered inner container */
 .about-section {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-
-  /* IMPORTANT: don’t use % padding here or it can cause “left aligned” weirdness */
   padding: 0 32px;
 
   display: flex;
@@ -45,15 +63,44 @@
   z-index: 2;
 }
 
-/* Keep your existing nested .content styles, but this ensures no random centering shifts */
+/* ---------- Hero load animation (subtle, no snap) ---------- */
+/* Start state */
+.about-wrapper .content {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(2px);
+  transition: opacity 650ms ease, transform 650ms ease, filter 650ms ease;
+}
+
+/* Loaded state */
+.about-wrapper.is-loaded .content {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* (Optional) slightly stagger the icons */
+.about-wrapper .social_icons {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 650ms ease, transform 650ms ease;
+  transition-delay: 90ms;
+}
+
+.about-wrapper.is-loaded .social_icons {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keep your existing typography */
 .about-section .content {
   text-align: left;
+  z-index: 2;
 
   .social_icons {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    color: white;
 
     svg {
       font-size: 1.8em;
@@ -84,43 +131,97 @@
   }
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .about-wrapper {
-    background-attachment: scroll;
+/* =========================================================
+   Scroll cue button
+   ========================================================= */
+
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 3;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: transform 0.18s ease, background-color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.scroll-cue:hover {
+  transform: translateX(-50%) translateY(-2px);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Bounce the BUTTON (not the arrow) */
+.scroll-cue:not(.is-up) {
+  animation: cue-bounce-btn 1.6s ease-in-out infinite;
+}
+
+.scroll-cue .arrow {
+  width: 10px;
+  height: 10px;
+
+  border-right: 2px solid rgba(255, 255, 255, 0.85);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+
+  transform: rotate(45deg);
+  transition: transform 260ms ease;
+}
+
+.scroll-cue.is-up .arrow {
+  transform: rotate(-135deg);
+}
+
+@keyframes cue-bounce-btn {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
   }
-
-  .about-section {
-    display: block;
-    padding: 150px 32px 0;
+  50% {
+    transform: translateX(-50%) translateY(4px);
   }
+}
 
-  .about-section .content {
-    width: 100%;
+/* Light mode cue (works for body.light-mode or wrapper .light-mode) */
+body.light-mode .scroll-cue,
+.light-mode .scroll-cue {
+  background: rgba(13, 17, 22, 0.04);
+  border: 1px solid rgba(13, 17, 22, 0.12);
+}
+
+body.light-mode .scroll-cue:hover,
+.light-mode .scroll-cue:hover {
+  background: rgba(13, 17, 22, 0.07);
+  border-color: rgba(13, 17, 22, 0.18);
+}
+
+body.light-mode .scroll-cue .arrow,
+.light-mode .scroll-cue .arrow {
+  border-right: 2px solid rgba(13, 17, 22, 0.75);
+  border-bottom: 2px solid rgba(13, 17, 22, 0.75);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue {
+    animation: none !important;
+    transition: none !important;
   }
-
-  .about-section h1 {
-    font-size: 4em;
-    text-align: left;
-  }
-
-  .about-section p {
-    text-align: left;
-  }
-
-  .social_icons {
-    display: none !important;
-  }
-
-  .mobile_social_icons {
-    padding-top: 10px;
-    display: flex !important;
-    flex-direction: row;
-    gap: 10px;
-    color: white;
-
-    svg {
-      font-size: 1.8em;
-    }
+  .scroll-cue .arrow {
+    transition: none !important;
   }
 }
