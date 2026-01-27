@@ -225,3 +225,107 @@ body.light-mode .scroll-cue .arrow,
     transition: none !important;
   }
 }
+
+/* =========================================================
+   RESPONSIVE MOBILE FIXES
+   ========================================================= */
+
+/* Tablet adjustments */
+@media (max-width: 900px) {
+  .about-wrapper {
+    min-height: 500px;
+  }
+
+  .about-section {
+    padding: 0 24px;
+  }
+
+  .about-section .content h1 {
+    font-size: 3.5em;
+  }
+
+  .about-section .content p {
+    font-size: 1.3em;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .about-wrapper {
+    min-height: 450px;
+    height: calc(100vh - 64px);
+    background-attachment: scroll; /* Better performance on mobile */
+  }
+
+  .about-section {
+    padding: 0 20px;
+    display: block !important; /* Override flex layout */
+    text-align: center;
+  }
+
+  .about-section .content {
+    text-align: center;
+    width: 100% !important; /* Ensure full width */
+    max-width: 100% !important;
+
+    h1 {
+      font-size: 2.5em !important;
+      line-height: 1.1;
+      width: 100%;
+    }
+
+    p {
+      font-size: 1.1em !important;
+      margin-top: 8px;
+      width: 100%;
+    }
+
+    /* Hide desktop social icons */
+    .social_icons {
+      display: none !important;
+    }
+
+    /* Show mobile social icons */
+    .mobile_social_icons {
+      display: flex !important;
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+      width: 100%;
+
+      svg {
+        font-size: 1.8em;
+      }
+    }
+  }
+
+  .about-section .image-wrapper {
+    display: none; /* Hide image wrapper on mobile to prevent layout issues */
+    
+    img {
+      width: 100px;
+    }
+  }
+
+  .scroll-cue {
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .about-section .content h1 {
+    font-size: 2em;
+  }
+
+  .about-section .content p {
+    font-size: 1em;
+  }
+
+  .about-section .content .mobile_social_icons svg {
+    font-size: 1.6em;
+  }
+}

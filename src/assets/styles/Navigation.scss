@@ -5,6 +5,7 @@
   --nav-radius: 999px;
   --nav-h: 44px;
   --nav-pad: 4px;
+  --nav-offset: 96px;
 
   /* dark defaults */
   --glass: rgba(10, 14, 20, 0.62);
@@ -19,7 +20,7 @@
   --indicator-border: rgba(160, 120, 255, 0.28);
 }
 
-/* Light mode variables (your App puts .light-mode on .main-container) */
+/* Light mode variables */
 .light-mode {
   --glass: rgba(255, 255, 255, 0.68);
   --glass-border: rgba(15, 23, 42, 0.12);
@@ -33,7 +34,7 @@
   --indicator-border: rgba(80, 0, 202, 0.22);
 }
 
-/* Wrapper: shrink-wrap, do not paint any bar */
+/* Wrapper */
 .nav-shell {
   position: fixed;
   top: 14px;
@@ -53,7 +54,7 @@
   border: none !important;
   box-shadow: none !important;
 
-  pointer-events: none; /* only children are clickable */
+  pointer-events: none;
   isolation: isolate;
 }
 
@@ -63,12 +64,14 @@
 
 .nav-toggle,
 .nav-pill,
-.nav-right-spacer {
+.nav-right-spacer,
+.mobile-menu-toggle {
   pointer-events: auto;
 }
 
-/* Toggle */
-.nav-toggle {
+/* Toggle buttons */
+.nav-toggle,
+.mobile-menu-toggle {
   height: var(--nav-h);
   width: var(--nav-h);
   border-radius: var(--nav-radius);
@@ -85,26 +88,28 @@
   cursor: pointer;
 
   transition: transform 160ms ease, box-shadow 200ms ease, border-color 200ms ease;
-
-  svg {
-    font-size: 1.15rem;
-    color: var(--text-active);
-  }
-
-  &:hover {
-    transform: translateY(-1px);
-    border-color: var(--indicator-border);
-  }
-
-  &:active {
-    transform: translateY(0px) scale(0.98);
-  }
 }
 
-/* Pill */
+.nav-toggle svg,
+.mobile-menu-toggle svg {
+  font-size: 1.15rem;
+  color: var(--text-active);
+}
+
+.nav-toggle:hover,
+.mobile-menu-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--indicator-border);
+}
+
+.nav-toggle:active,
+.mobile-menu-toggle:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Pill - Desktop */
 .nav-pill {
   position: relative;
-
   height: var(--nav-h);
   width: fit-content;
   max-width: calc(100vw - 28px - (var(--nav-h) * 2) - 24px);
@@ -128,8 +133,6 @@
   white-space: nowrap;
 }
 
-/* IMPORTANT:
-   No left offset here. JS uses btn.offsetLeft already (which includes padding). */
 .nav-pill-indicator {
   position: absolute;
   top: var(--nav-pad);
@@ -142,9 +145,7 @@
 
   z-index: 1;
 
-  transition:
-    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
-    width 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), width 280ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, width;
 }
 
@@ -167,45 +168,183 @@
   cursor: pointer;
 
   transition: color 180ms ease, transform 180ms ease;
-
-  &:hover {
-    color: var(--text-hover);
-    transform: translateY(-0.5px);
-  }
-
-  &:active {
-    transform: translateY(0px) scale(0.985);
-  }
-
-  &.is-active {
-    color: var(--text-active);
-  }
 }
 
-/* Spacer keeps pill centered (left toggle exists) */
+.nav-pill-btn:hover {
+  color: var(--text-hover);
+  transform: translateY(-0.5px);
+}
+
+.nav-pill-btn:active {
+  transform: translateY(0px) scale(0.985);
+}
+
+.nav-pill-btn.is-active {
+  color: var(--text-active);
+}
+
+/* Spacer */
 .nav-right-spacer {
   width: var(--nav-h);
   height: var(--nav-h);
 }
 
-/* Mobile: allow scroll inside pill if it overflows */
-@media (max-width: 520px) {
+/* Mobile/Desktop visibility */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100vh;
+  z-index: 10000;
+
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--glass-border);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+
+  transition: right 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  overflow-y: auto;
+}
+
+.mobile-menu.is-open {
+  right: 0;
+}
+
+.mobile-menu-content {
+  padding: 80px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-menu-item {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+
+  font-family: "Lato", sans-serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+
+  transition: background-color 200ms ease, color 200ms ease, transform 150ms ease;
+}
+
+.mobile-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-hover);
+  transform: translateX(4px);
+}
+
+.mobile-menu-item:active {
+  transform: translateX(4px) scale(0.98);
+}
+
+.mobile-menu-item.is-active {
+  background: var(--indicator-bg);
+  color: var(--text-active);
+  border: 1px solid var(--indicator-border);
+}
+
+/* Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  
+  animation: fadeIn 300ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  :root {
+    --nav-h: 44px;
+  }
+
+  .mobile-only {
+    display: grid !important;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
   .nav-shell {
-    max-width: calc(100vw - 18px);
-    gap: 10px;
+    grid-template-columns: var(--nav-h) var(--nav-h);
+    gap: 12px;
+    max-width: calc(100vw - 24px);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --nav-h: 40px;
   }
 
-  .nav-pill {
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  .nav-shell {
+    top: 10px;
   }
 
-  .nav-pill-btn {
-    white-space: nowrap;
+  .mobile-menu {
+    width: 260px;
+    right: -260px;
   }
+
+  .mobile-menu-item {
+    font-size: 1rem;
+    padding: 14px 18px;
+  }
+}
+
+/* Add this to the bottom of your Navigation.scss file, or replace the toggle buttons section */
+
+/* IMPROVED MOBILE BUTTON CLICKABILITY */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    /* Larger touch target on mobile */
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .mobile-menu-toggle svg {
+    /* Bigger icon = easier to click */
+    font-size: 1.5rem !important;
+    pointer-events: none; /* Ensures clicks go to button, not icon */
+  }
+}
+
+/* Alternative: Make the entire button area clickable */
+.mobile-menu-toggle {
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+.mobile-menu-toggle svg {
+  pointer-events: none; /* CRITICAL: Let clicks pass through icon to button */
 }

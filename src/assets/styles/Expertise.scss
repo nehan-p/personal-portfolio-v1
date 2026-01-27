@@ -7,6 +7,10 @@
     svg {
         color: white;
     }
+
+    h1 {
+        margin-bottom: 30px;
+    }
 }
   
 .skills-container .skills-grid {
@@ -18,6 +22,15 @@
 .skills-container .skills-grid .skill {
     align-items: center;
     text-align: left;
+
+    h3 {
+        margin: 16px 0 12px 0;
+    }
+
+    p {
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
 }
   
 .chip {
@@ -48,6 +61,7 @@
 
 .flex-chips .MuiChip-root {
     margin-right: 0.5em;
+    margin-bottom: 0.5em; /* Add bottom margin for wrapping */
 }
 
 .flex-chips .MuiChip-outlined {
@@ -60,26 +74,82 @@
     color: rgb(39, 40, 34);
 }
 
-@media screen {
-    @media (max-width: 768px) {
-        .skills-container {
-            display: block;
-            padding-left: 5%;
-            padding-right: 5%;
-        }
+/* Tablet */
+@media (max-width: 1024px) {
+    .skills-container {
+        padding: 5% 8%;
+    }
+
+    .skills-container .skills-grid {
+        grid-gap: 40px;
+    }
+}
+
+/* Medium screens - 2 column grid */
+@media (max-width: 900px) {
+    .skills-container {
+        padding: 5% 6%;
+    }
+
+    .skills-container .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 35px;
+    }
+}
+
+/* Mobile - single column */
+@media (max-width: 768px) {
+    .skills-container {
+        padding: 40px 20px;
+    }
+
+    .skills-container .skills-grid {
+        display: block;
+    }
     
-        .skills-container .skills-grid {
-            display: initial;
+    .skills-container .skills-grid .skill {
+        padding-bottom: 40px;
+
+        &:last-child {
+            padding-bottom: 0;
         }
-        
-        .skills-container .skills-grid .skill {
-            padding-bottom: 5%;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 567px) {
+    .skills-container {
+        padding: 30px 16px;
+    }
+
+    .skills-container h1 {
+        font-size: 1.8rem;
+        margin-bottom: 24px;
+    }
+
+    .skills-container .skills-grid .skill {
+        padding-bottom: 32px;
+
+        svg {
+            font-size: 2.5em !important;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 12px 0 10px 0;
+        }
+
+        p {
+            font-size: 0.95rem;
         }
     }
 
-    @media (max-width: 567px) {
-        .skills {
-            font-size: 12px;
-        }
+    .chip {
+        font-size: 0.75rem !important;
+        height: 22px !important;
+    }
+
+    .flex-chips .chip-title {
+        font-size: 0.9rem;
     }
 }
