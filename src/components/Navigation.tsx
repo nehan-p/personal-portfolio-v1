@@ -3,6 +3,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import DescriptionIcon from "@mui/icons-material/Description";
 import "../assets/styles/Navigation.scss";
 
 type NavItem = { label: string; id: string };
@@ -16,6 +17,7 @@ interface NavigationProps {
 
 function Navigation({ parentToChild, modeChange }: NavigationProps) {
   const { mode } = parentToChild;
+  const resumeUrl = "/Nehan_Punjani_Resume.pdf";
 
   const navItems: NavItem[] = useMemo(
     () => [
@@ -233,7 +235,26 @@ function Navigation({ parentToChild, modeChange }: NavigationProps) {
           {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
 
-        <div className="nav-right-spacer desktop-only" aria-hidden="true" />
+        <div className="nav-resume-wrap desktop-only">
+          <a
+            className="nav-resume-btn"
+            href={resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Resume
+          </a>
+        </div>
+
+        <a
+          className="nav-resume-icon mobile-only"
+          href={resumeUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open resume"
+        >
+          <DescriptionIcon />
+        </a>
       </div>
 
       {/* Mobile slide-out menu */}
