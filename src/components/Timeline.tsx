@@ -70,7 +70,7 @@ function Timeline() {
             className="vertical-timeline-element--work tl-item"
             contentStyle={contentStyle}
             contentArrowStyle={contentArrowStyle}
-            date="Oct 2025 – Dec 2026"
+            date="Oct 2025 – Dec 2025"
             iconStyle={iconStyle}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
