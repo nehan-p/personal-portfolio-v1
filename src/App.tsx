@@ -5,7 +5,7 @@ import "./index.scss";
 import About from "./components/About";
 
 function App() {
-  const [mode, setMode] = useState<string>("dark");
+  const [mode, setMode] = useState<"dark" | "light">("dark");
 
   const handleModeChange = () => {
     setMode((prev) => (prev === "dark" ? "light" : "dark"));
@@ -15,14 +15,20 @@ function App() {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, []);
 
+  // SINGLE SOURCE OF TRUTH: also apply theme to <body>
+  useEffect(() => {
+    document.body.classList.toggle("dark-mode", mode === "dark");
+    document.body.classList.toggle("light-mode", mode === "light");
+  }, [mode]);
+
   return (
     <div className={`main-container ${mode === "dark" ? "dark-mode" : "light-mode"}`}>
       <Navigation parentToChild={{ mode }} modeChange={handleModeChange} />
 
-      {/* Hero should NOT be inside FadeIn (prevents initial snap/slide-in) */}
+      {/* Hero */}
       <Main />
 
-      {/* Fade-in the rest if you still want that effect */}
+      {/* Fade-in the rest */}
       <FadeIn transitionDuration={700}>
         <About />
         <Timeline />
