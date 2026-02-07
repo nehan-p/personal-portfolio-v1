@@ -65,6 +65,44 @@ function Timeline() {
 
         {/* Important: disable the library's default "bounce" animation */}
         <VerticalTimeline animate={false} layout="1-column-left" lineColor="rgba(255,255,255,0.10)">
+          {/* Expense Trend */}
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work tl-item"
+            contentStyle={contentStyle}
+            contentArrowStyle={contentArrowStyle}
+            date="Jan 2026 – Present"
+            iconStyle={iconStyle}
+            icon={<FontAwesomeIcon icon={faBriefcase} />}
+          >
+            <div className="tl-card" data-tl-reveal>
+              <h3 className="tl-role">Full Stack Software Developer Intern</h3>
+              <h4 className="tl-org">Expense Trend · Remote</h4>
+
+              <div className="tl-tags">
+                <span className="tl-tag">Next.js</span>
+                <span className="tl-tag">React</span>
+                <span className="tl-tag">TypeScript</span>
+                <span className="tl-tag">REST APIs</span>
+                <span className="tl-tag">Node.js</span>
+              </div>
+
+              <ul className="tl-bullets">
+                <li>
+                  Built responsive analytics dashboards in Next.js/React with TypeScript to visualize
+                  keyword difficulty, search volume, and rank trend signals across large keyword datasets.
+                </li>
+                <li>
+                  Implemented client-side filtering/sorting, time-series charting, and API-driven state
+                  flows to reduce manual analysis and speed up decision-making.
+                </li>
+                <li>
+                  Integrated frontend modules with REST endpoints and added Node.js data transformation
+                  routes to improve payload handling and end-to-end feature delivery.
+                </li>
+              </ul>
+            </div>
+          </VerticalTimelineElement>
+
           {/* FiscalElevate */}
           <VerticalTimelineElement
             className="vertical-timeline-element--work tl-item"
@@ -79,15 +117,26 @@ function Timeline() {
               <h4 className="tl-org">FiscalElevate · Remote</h4>
 
               <div className="tl-tags">
-                <span className="tl-tag">LLM prompts</span>
-                <span className="tl-tag">Automation</span>
+                <span className="tl-tag">ChatGPT API</span>
+                <span className="tl-tag">Claude API</span>
+                <span className="tl-tag">Airtable</span>
+                <span className="tl-tag">n8n</span>
                 <span className="tl-tag">QA scoring</span>
-                <span className="tl-tag">Airtable + n8n</span>
               </div>
 
               <ul className="tl-bullets">
-                <li>Built prompt workflows for cold-email outreach using ChatGPT + Claude APIs.</li>
-                <li>Ran batch QA loops to improve consistency, compliance, and iteration speed.</li>
+                <li>
+                  Designed and tuned prompt workflows for AI cold-email generation using ChatGPT API and
+                  Claude API to improve tone consistency and personalization quality.
+                </li>
+                <li>
+                  Ran batch testing loops in Airtable and n8n, scoring multi-email output sets for quality
+                  and compliance before rollout.
+                </li>
+                <li>
+                  Built reusable prompt templates and testing docs that standardized iteration cycles and
+                  improved handoff speed across the team.
+                </li>
               </ul>
             </div>
           </VerticalTimelineElement>

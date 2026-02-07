@@ -19,9 +19,9 @@ function About() {
             </p>
 
             <p>
-              Recently, I’ve been working with GenAI systems, building workflow
-              automation, prompt pipelines, and full-stack tools that turn ideas
-              into usable products.
+              Currently, I’m building Next.js/React analytics dashboards and
+              TypeScript + REST API integrations at Expense Trend, while applying
+              prompt engineering and automation patterns from my GenAI work.
             </p>
           </div>
 
@@ -29,8 +29,8 @@ function About() {
             <span className="aboutv2-pill">Software Engineering</span>
             <span className="aboutv2-pill">Full-Stack</span>
             <span className="aboutv2-pill">Automation</span>
-            <span className="aboutv2-pill">GenAI</span>
-            <span className="aboutv2-pill">Clean Architecture</span>
+            <span className="aboutv2-pill">TypeScript</span>
+            <span className="aboutv2-pill">REST APIs</span>
           </div>
         </div>
       </div>
